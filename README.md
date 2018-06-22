@@ -34,3 +34,9 @@ spring-data-elasticsearch各版本依赖的具体ES版本，然后在[mvnreposit
 
 ## 配置ES链接信息
 请参看本项目的配置文件，值得说明的是，这里我们需要用9300端口，而非9200。***这里需要注意***
+
+## 关于启用ES JPA
+ES采用JPA方式会和JDBC的JPA产生冲突，导致出现ES JPA接口无法注入到spring aop中，因此我们需要在启动类上显式的说明加载ES JPA，配置如下:
+```java
+@EnableElasticsearchRepositories(basePackages = "com.koma.spring.springdataelasticsearchdemo.repositories")
+```
